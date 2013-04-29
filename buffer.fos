@@ -354,15 +354,15 @@ final class CBuffer : Buffer
 
 	Buffer@ opShr( string& value ) // Buffer >> value
 	{
-		value.resize(0);
+		value.rawResize(0);
 		BUFFER_LENTYPE len = 0;
 		this >> len;
 		for( uint s=0; s<len; s++ )
 		{
 			uint8 char = 0;
 			this >> char;
-			value.resize( s+1 );
-			value[s] = char;
+			value.rawResize(s+1);
+			value.rawSet(s, char);
 		}
 		return( this );
 	}
@@ -374,7 +374,7 @@ final class CBuffer : Buffer
 		if( len > 0 )
 		{
 			for( uint s=0; s<len; s++ )
-				this << uint8( value[s] );
+				this << value.rawGet(s);
 		}
 		return( this );
 	}
