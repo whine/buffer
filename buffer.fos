@@ -354,15 +354,26 @@ final class CBuffer : Buffer
 
 	Buffer@ opShr( string& value ) // Buffer >> value
 	{
+#ifdef BUFFER_UNICODE
 		value.rawResize(0);
+#endif
+#ifndef BUFFER_UNICODE
+		value.resize(0);
+#endif
 		BUFFER_LENTYPE len = 0;
 		this >> len;
 		for( uint s=0; s<len; s++ )
 		{
 			uint8 char = 0;
 			this >> char;
+#ifdef BUFFER_UNICODE
 			value.rawResize(s+1);
 			value.rawSet(s, char);
+#endif
+#ifndef BUFFER_UNICODE
+			value.resize(s+1);
+			value[s] = char;
+#endif
 		}
 		return( this );
 	}
