@@ -9,7 +9,7 @@
 #define __BUFFER_LAZY__
 
 #define SKIP_PRAGMAS
-#define FO2238
+//#define FO2238
 
 #ifdef FO2238
 	#include "../fonline2238.h"
