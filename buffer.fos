@@ -385,7 +385,12 @@ final class CBuffer : Buffer
 		if( len > 0 )
 		{
 			for( uint s=0; s<len; s++ )
+#ifdef BUFFER_UNICODE
 				this << value.rawGet(s);
+#endif
+#ifndef BUFFER_UNICODE
+				this << uint8( value[s] );
+#endif
 		}
 		return( this );
 	}
