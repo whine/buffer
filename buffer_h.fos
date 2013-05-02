@@ -85,6 +85,10 @@
 // How length of string/arrays will be stored in buffer
 #define BUFFER_LENTYPE	uint16
 
+// Backward compatibility
+// Undefine if using SDK older than revision 400
+#define BUFFER_UNICODE
+
 shared interface Buffer
 {
 	bool IsRaw( uint len );
