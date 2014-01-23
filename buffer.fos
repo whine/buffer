@@ -380,7 +380,12 @@ final class CBuffer : Buffer
 
 	Buffer@ opShl( string value ) // Buffer << value
 	{
+#ifdef BUFFER_UNICODE
+		BUFFER_LENTYPE len = value.rawLength();
+#endif
+#ifndef BUFFER_UNICODE
 		BUFFER_LENTYPE len = value.length();
+#endif
 		this << len;
 		if( len > 0 )
 		{
